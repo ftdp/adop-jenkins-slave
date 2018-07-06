@@ -37,14 +37,16 @@ RUN yum -y install epel-release && \
     net-tools \
     strace \
     glibc.i686 \
-    file && \
+    file \
+    sendmail && \
     yum clean all && \
     pip install awscli==1.10.19 \
     python-docx \
     mammoth \
     pymongo \
     requests==2.13.0 \
-    jsondiff
+    jsondiff \
+    paramiko
 
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
