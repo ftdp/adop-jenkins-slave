@@ -1,4 +1,4 @@
-FROM centos:centos7.2.1511
+FROM centos:centos7
 MAINTAINER "Nick Griffin" <nicholas.griffin@accenture.com>
 
 # Java Env Variables
@@ -21,7 +21,6 @@ ENV SLAVE_DESCRIPTION="Core Jenkins Slave"
 # Pre-requisites
 RUN yum -y install epel-release && \
     yum -y install which \
-    deltarpm \
     git \
     wget \
     tar \
