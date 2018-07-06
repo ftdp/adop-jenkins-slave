@@ -21,6 +21,7 @@ ENV SLAVE_DESCRIPTION="Core Jenkins Slave"
 # Pre-requisites
 RUN yum -y install epel-release && \
     yum -y install which \
+    deltarpm \
     git \
     wget \
     tar \
