@@ -21,7 +21,6 @@ ENV SLAVE_DESCRIPTION="Core Jenkins Slave"
 # Pre-requisites
 RUN yum -y install epel-release
 RUN yum install -y which \
-    jira \
     git \
     wget \
     tar \
@@ -33,7 +32,8 @@ RUN yum install -y which \
     libxslt && \
     yum clean all 
 
-RUN pip install awscli==1.10.19
+RUN pip install awscli==1.10.19 \
+    jira
 
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
