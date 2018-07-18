@@ -46,7 +46,8 @@ RUN yum -y install epel-release && \
     pymongo \
     requests==2.13.0 \
     jsondiff \
-    paramiko
+    paramiko \
+    jira 
 
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
