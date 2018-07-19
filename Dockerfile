@@ -2,8 +2,8 @@ FROM centos:centos7
 MAINTAINER "Nick Griffin" <nicholas.griffin@accenture.com>
 
 # Java Env Variables
-ENV JAVA_VERSION=1.8.0_171
-ENV JAVA_TARBALL=jdk-8u171-linux-x64.tar.gz
+ENV JAVA_VERSION=1.8.0_181
+ENV JAVA_TARBALL=jdk-8u181-linux-x64.tar.gz
 ENV JAVA_HOME=/opt/java/jdk${JAVA_VERSION}
 
 # Swarm Env Variables (defaults)
@@ -63,7 +63,7 @@ RUN curl -fsSL https://get.docker.com/ | sed "s/docker-engine/docker-engine-${DO
 # Install Java
 RUN wget -q --no-check-certificate --directory-prefix=/tmp \
          --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-            http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/${JAVA_TARBALL} && \
+            http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/${JAVA_TARBALL} && \
           mkdir -p /opt/java && \
               tar -xzf /tmp/${JAVA_TARBALL} -C /opt/java/ && \
             alternatives --install /usr/bin/java java /opt/java/jdk${JAVA_VERSION}/bin/java 100 && \
