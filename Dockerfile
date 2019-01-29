@@ -42,7 +42,6 @@ RUN yum -y install epel-release && \
     yum clean all
     
 RUN pip install awscli==1.10.19 \
-    python-docx \
     mammoth \
     pymongo \
     requests==2.13.0 \
