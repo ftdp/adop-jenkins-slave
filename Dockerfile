@@ -57,6 +57,9 @@ ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
 ENV DOCKER_COMPOSE_VERSION=1.6.0
 ENV DOCKER_MACHINE_VERSION=v0.6.0
 
+COPY confluence.py /usr/lib/python2.7/site-packages
+COPY config.ini /usr/lib/python2.7/site-packages
+
 RUN curl -fsSL https://get.docker.com/ | sed "s/docker-engine/docker-engine-${DOCKER_ENGINE_VERSION}/" | sh && \
     curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose && \
