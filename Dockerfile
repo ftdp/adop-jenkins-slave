@@ -51,7 +51,16 @@ RUN yum -y install epel-release && \
     python-dotenv \
     python-jenkins
     
-
+RUN yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel -y 
+RUN yum install gcc perl-ExtUtils-MakeMaker -y 
+RUN wget -o /usr/src/ https://www.kernel.org/pub/software/scm/git/git-2.19.1.tar.gz 
+RUN tar xzf /usr/src/git-2.19.1.tar.gz 
+RUN cd git-2.19.1 \
+    make prefix=/usr/local/git all \
+    make prefix=/usr/local/git install \
+    echo "export PATH=/usr/local/git/bin:$PATH" >> /etc/bashrc \
+    source /etc/bashrc
+    
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
 ENV DOCKER_COMPOSE_VERSION=1.6.0
