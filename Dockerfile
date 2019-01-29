@@ -48,7 +48,9 @@ RUN yum -y install epel-release && \
     jsondiff \
     paramiko \
     jira \
-    python-dotenv
+    python-dotenv \
+    python-jenkins
+    
 
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
