@@ -52,7 +52,6 @@ RUN yum -y install epel-release && \
     python-jenkins \
     python-docx
     
-    
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
 ENV DOCKER_COMPOSE_VERSION=1.6.0
