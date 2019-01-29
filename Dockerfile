@@ -2,8 +2,8 @@ FROM centos:centos7
 MAINTAINER "Nick Griffin" <nicholas.griffin@accenture.com>
 
 # Java Env Variables
-ENV JAVA_VERSION=1.8.0_181
-ENV JAVA_TARBALL=jdk-8u181-linux-x64.tar.gz
+ENV JAVA_VERSION=1.8.0_202
+ENV JAVA_TARBALL=jdk-8u202-linux-x64.tar.gz
 ENV JAVA_HOME=/opt/java/jdk${JAVA_VERSION}
 
 # Swarm Env Variables (defaults)
@@ -21,7 +21,6 @@ ENV SLAVE_DESCRIPTION="Core Jenkins Slave"
 # Pre-requisites
 RUN yum -y install epel-release && \
     yum -y install which \
-    git \
     wget \
     tar \
     zip \
@@ -38,10 +37,11 @@ RUN yum -y install epel-release && \
     strace \
     glibc.i686 \
     file \
-    sendmail && \
-    yum clean all
-    
-RUN pip install awscli==1.10.19 \
+    sendmail \
+    http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm && \
+    yum install -y git && \
+    yum clean all && \
+    pip install awscli==1.10.19 \
     mammoth \
     pymongo \
     requests==2.13.0 \
@@ -49,17 +49,9 @@ RUN pip install awscli==1.10.19 \
     paramiko \
     jira \
     python-dotenv \
-    python-jenkins
+    python-jenkins \
+    python-docx
     
-RUN yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel -y 
-RUN yum install gcc perl-ExtUtils-MakeMaker -y 
-RUN wget -o /usr/src/ https://www.kernel.org/pub/software/scm/git/git-2.19.1.tar.gz 
-RUN tar xzf /usr/src/git-2.19.1.tar.gz 
-RUN cd git-2.19.1 \
-    make prefix=/usr/local/git all \
-    make prefix=/usr/local/git install \
-    echo "export PATH=/usr/local/git/bin:$PATH" >> /etc/bashrc \
-    source /etc/bashrc
     
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
@@ -78,7 +70,7 @@ RUN curl -fsSL https://get.docker.com/ | sed "s/docker-engine/docker-engine-${DO
 # Install Java
 RUN wget -q --no-check-certificate --directory-prefix=/tmp \
          --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-            http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/${JAVA_TARBALL} && \
+            https://download.oracle.com/otn-pub/java/jdk/8u202-b08/1961070e4c9b4e26a04e7f5a083f551e/${JAVA_TARBALL} && \
           mkdir -p /opt/java && \
               tar -xzf /tmp/${JAVA_TARBALL} -C /opt/java/ && \
             alternatives --install /usr/bin/java java /opt/java/jdk${JAVA_VERSION}/bin/java 100 && \
