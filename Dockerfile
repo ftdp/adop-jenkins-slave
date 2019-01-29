@@ -39,8 +39,9 @@ RUN yum -y install epel-release && \
     glibc.i686 \
     file \
     sendmail && \
-    yum clean all && \
-    pip install awscli==1.10.19 \
+    yum clean all
+    
+RUN pip install awscli==1.10.19 \
     python-docx \
     mammoth \
     pymongo \
